@@ -1,20 +1,17 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-type buttonText = {
+type buttonProps = {
   text: string;
+  handlePress?: () => void;
 };
 
-const HomeScreenButton = (props: buttonText) => {
-  const { text } = props;
-
+const HomeScreenButton = ({ text, handlePress }: buttonProps) => {
   return (
     <TouchableOpacity
       style={styles.button}
-      onPress={() => {
-        alert("pressed");
-        console.log("pressed");
-      }}
+      activeOpacity={0.5}
+      onPress={handlePress}
     >
       <Text style={styles.buttonText}>{text}</Text>
     </TouchableOpacity>
