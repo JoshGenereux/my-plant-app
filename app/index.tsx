@@ -1,21 +1,18 @@
-import { StyleSheet, Text, View } from "react-native";
+import HomeScreen from "@/screens/HomeScreen";
+import { StyleSheet, View } from "react-native";
 
 export default function Index() {
   return (
     <View style={styles.container}>
-      <Text style={styles.mainText}>My Plant App</Text>
+      <HomeScreen />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     marginTop: 50,
-    flexDirection: "column",
     alignItems: "center",
-  },
-  mainText: {
-    color: "green",
-    fontSize: 20,
   },
 });
