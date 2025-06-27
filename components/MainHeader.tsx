@@ -1,10 +1,16 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const MainHeader = () => {
+type buttonProps = {
+  homePress?: () => void;
+};
+
+const MainHeader = ({ homePress }: buttonProps) => {
   return (
     <View style={styles.headerContainer}>
-      <Text style={styles.mainText}>My Plant App</Text>
+      <TouchableOpacity onPress={homePress}>
+        <Text style={styles.mainText}>My Plant App</Text>
+      </TouchableOpacity>
     </View>
   );
 };
