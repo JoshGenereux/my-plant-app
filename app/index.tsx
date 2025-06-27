@@ -1,18 +1,11 @@
 import HomeScreen from "@/screens/HomeScreen";
-import { StyleSheet, View } from "react-native";
+import React from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
-export default function Index() {
+export default function App() {
   return (
-    <View style={styles.container}>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <HomeScreen />
-    </View>
+    </GestureHandlerRootView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 50,
-    alignItems: "center",
-  },
-});
