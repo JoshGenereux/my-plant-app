@@ -1,35 +1,34 @@
-import HomeScreenButton from "@/components/HomeScreenButton";
 import MainHeader from "@/components/MainHeader";
-import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
-import MyPlants from "./MyPlants";
-
-const navButtons = ["home", "My Plants", "Add Plant", "Remove Plant"];
+import useNavStore from "@/hooks/useNavStore";
+import usePlantStore from "@/hooks/usePlantStore";
+import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import NewPlant from "./NewPlant";
 
 const HomeScreen = () => {
-  const [screen, setScreen] = useState("home");
-
-  const handlePress = (key: string) => {
-    setScreen(key);
-  };
+  const { screenName, changeScreen } = useNavStore();
+  const plantStore = usePlantStore();
+  console.log(plantStore);
 
   return (
     <View style={styles.fullContainer}>
-      <MainHeader homePress={() => setScreen("home")} />
-      <View style={styles.viewComponet}>
-        {screen === "home" && (
-          <View style={styles.navButtons}>
-            {navButtons.map((button) => (
-              <HomeScreenButton
-                text={button}
-                handlePress={() => handlePress(button)}
-                key={button}
-              />
-            ))}
-          </View>
-        )}
-        {screen === "My Plants" && <MyPlants />}
-      </View>
+      <MainHeader />
+      {screenName === "home" && (
+        <>
+          <ScrollView
+            style={styles.scrollContainer}
+            contentContainerStyle={styles.scrollContent}
+          ></ScrollView>
+          <TouchableOpacity
+            style={styles.addButton}
+            onPress={() => changeScreen("add")}
+          >
+            <Text style={styles.addButtonPlus}>+</Text>
+          </TouchableOpacity>
+        </>
+      )}
+      {screenName === "add" && <NewPlant />}
     </View>
   );
 };
@@ -38,18 +37,32 @@ const styles = StyleSheet.create({
   fullContainer: {
     flex: 1,
     width: "100%",
+    marginTop: 50,
   },
-  viewComponet: {
+  scrollContainer: {
     flex: 1,
     width: "100%",
-    backgroundColor: "lightgrey",
-    alignItems: "center",
   },
-  navButtons: {
-    flex: 0.5,
-    width: "100%",
-    justifyContent: "space-around",
+  scrollContent: {
+    paddingTop: 40,
     alignItems: "center",
+    gap: 15,
+  },
+  addButton: {
+    width: 60,
+    height: 60,
+    backgroundColor: "#9EBC9E",
+    position: "absolute",
+    bottom: 30,
+    right: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 8,
+  },
+  addButtonPlus: {
+    color: "white",
+    fontSize: 50,
+    lineHeight: 50,
   },
 });
 

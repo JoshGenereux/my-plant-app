@@ -1,14 +1,13 @@
+import useNavStore from "@/hooks/useNavStore";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-type buttonProps = {
-  homePress?: () => void;
-};
+const MainHeader = () => {
+  const navStore = useNavStore();
 
-const MainHeader = ({ homePress }: buttonProps) => {
   return (
     <View style={styles.headerContainer}>
-      <TouchableOpacity onPress={homePress}>
+      <TouchableOpacity onPress={() => navStore.goHome()}>
         <Text style={styles.mainText}>My Plant App</Text>
       </TouchableOpacity>
     </View>
