@@ -9,7 +9,7 @@ import NewPlant from "./NewPlant";
 const HomeScreen = () => {
   const { screenName, changeScreen } = useNavStore();
   const plantStore = usePlantStore();
-  console.log(plantStore);
+  console.log(plantStore.plants);
 
   return (
     <View style={styles.fullContainer}>

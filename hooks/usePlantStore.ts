@@ -11,13 +11,22 @@ type Plant = {
 
 type PlantStore = {
   plants: Plant[];
-  addPlant: (plant: Plant) => void;
+  nextId: number;
+  addPlant: (plant: Omit<Plant, "id">) => void;
   removePlant: (id: number) => void;
 };
 
 const usePlantStore = create<PlantStore>((set) => ({
   plants: [],
-  addPlant: (plant) => set((state) => ({ plants: [...state.plants, plant] })),
+  nextId: 1,
+  addPlant: (plant) =>
+    set((state) => {
+      const id = state.nextId;
+      return {
+        plants: [...state.plants, { ...plant, id }],
+        nextId: id + 1,
+      };
+    }),
   removePlant: (id) =>
     set((state) => ({
       plants: state.plants.filter((p) => p.id !== id),
