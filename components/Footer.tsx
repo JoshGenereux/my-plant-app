@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
   footerContainer: {
     height: 100,
     width: "100%",
-    backgroundColor: "lightgrey",
   },
   backButton: {
     width: 60,

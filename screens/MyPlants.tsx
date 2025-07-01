@@ -1,18 +1,38 @@
+import useNavStore from "@/hooks/useNavStore";
 import usePlantStore from "@/hooks/usePlantStore";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const MyPlants = () => {
-  const { plants } = usePlantStore();
+  const { plants, selectPlant } = usePlantStore();
+  const navStore = useNavStore();
+
+  const handlePress = (id: number) => {
+    selectPlant(id);
+    navStore.changeScreen("plant");
+  };
 
   return (
     <View style={styles.plants}>
       {plants.map((plant) => (
-        <TouchableOpacity style={styles.plantContainer} key={plant.id}>
-          <Text>{plant.name}</Text>
-          <Text>{plant.id}</Text>
-          <Text>{plant.type}</Text>
-          <Text>{plant.info}</Text>
+        <TouchableOpacity
+          style={styles.plantContainer}
+          key={plant.id}
+          onPress={() => {
+            handlePress(plant.id);
+          }}
+        >
+          <View style={styles.nameBox}>
+            <Text style={styles.name}>{plant.name}</Text>
+          </View>
+          <View style={styles.typeBox}>
+            <Text style={styles.plantTypeHeader}>Plant Type:</Text>
+            <Text style={styles.plantType}>{plant.type}</Text>
+          </View>
+          <View style={styles.infoBox}>
+            <Text style={styles.plantInfoHeader}>{`${plant.type} info:`}</Text>
+            <Text style={styles.plantInfo}>{plant.info}</Text>
+          </View>
         </TouchableOpacity>
       ))}
     </View>
@@ -28,12 +48,57 @@ const styles = StyleSheet.create({
   },
 
   plantContainer: {
-    width: "75%",
-    height: 250,
-    backgroundColor: "lightgreen",
+    width: "90%",
+    height: 350,
     borderRadius: 25,
-    padding: 10,
+    borderWidth: 2,
+    borderColor: "#6E6362",
   },
+
+  nameBox: {
+    width: "100%",
+    height: 35,
+    justifyContent: "center",
+    alignItems: "center",
+    borderBottomWidth: 1,
+    borderBottomColor: "#6E6362",
+  },
+
+  name: {
+    fontWeight: "bold",
+    fontSize: 25,
+  },
+
+  typeBox: {
+    width: "100%",
+    height: 25,
+    flexDirection: "row",
+    gap: 5,
+    alignItems: "flex-end",
+    paddingLeft: 10,
+  },
+
+  plantTypeHeader: {
+    fontWeight: "bold",
+    fontSize: 18,
+  },
+
+  plantType: {},
+
+  infoBox: {
+    borderWidth: 1,
+    width: "40%",
+    flex: 1,
+    paddingLeft: 10,
+    marginTop: 5,
+  },
+
+  plantInfoHeader: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+
+  plantInfo: {},
 });
 
 export default MyPlants;

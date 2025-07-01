@@ -7,11 +7,11 @@ import { StyleSheet, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import MyPlants from "./MyPlants";
 import NewPlant from "./NewPlant";
+import Plant from "./Plant";
 
 const HomeScreen = () => {
   const { screenName } = useNavStore();
-  const plantStore = usePlantStore();
-  console.log(plantStore.plants);
+  const { selected } = usePlantStore();
 
   return (
     <View style={styles.fullContainer}>
@@ -27,6 +27,7 @@ const HomeScreen = () => {
         </>
       )}
       {screenName === "add" && <NewPlant />}
+      {screenName === "plant" && <Plant id={selected} />}
       <Footer />
     </View>
   );
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flex: 1,
     width: "100%",
-    paddingTop: 40,
+    paddingTop: 20,
   },
 });
 
