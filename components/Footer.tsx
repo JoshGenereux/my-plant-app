@@ -8,15 +8,14 @@ const Footer = () => {
 
   return (
     <View style={styles.footerContainer}>
-      {screenName === "home" && (
+      {screenName === "home" ? (
         <TouchableOpacity
           style={styles.addButton}
           onPress={() => changeScreen("add")}
         >
           <Text style={styles.addButtonPlus}>+</Text>
         </TouchableOpacity>
-      )}
-      {screenName === "add" && (
+      ) : (
         <TouchableOpacity
           style={styles.backButton}
           onPress={() => navStore.goHome()}

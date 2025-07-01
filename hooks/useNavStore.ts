@@ -1,10 +1,5 @@
+import { NavStore } from "@/types/types";
 import { create } from "zustand";
-
-type NavStore = {
-  screenName: string;
-  changeScreen: (name: string) => void;
-  goHome: () => void;
-};
 
 const useNavStore = create<NavStore>((set) => ({
   screenName: "home",
