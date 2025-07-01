@@ -31,7 +31,7 @@ const MyPlants = () => {
             <Text style={styles.plantType}>{plant.type}</Text>
           </View>
           <View style={styles.infoBox}>
-            <Text style={styles.plantInfoHeader}>{`${plant.type} info:`}</Text>
+            <Text style={styles.plantInfoHeader}>Info:</Text>
             <Text style={styles.plantInfo}>{plant.info}</Text>
           </View>
         </TouchableOpacity>
