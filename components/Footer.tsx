@@ -9,7 +9,7 @@ const Footer = () => {
 
   const handleDelete = () => {
     removePlant(selected);
-    navStore.goHome();
+    // navStore.goHome();
   };
 
   return (

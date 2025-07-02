@@ -32,15 +32,17 @@ const NewPlant = () => {
   const handleSubmit = () => {
     setHasSubmitted(true);
 
-    if (checkFilled()) {
-      addPlant({ name, type, info });
-      goHome();
-      setName("");
-      setType("");
-      setInfo("");
-      setErrors({});
-      setHasSubmitted(false);
-    }
+    // if (checkFilled()) {
+    //   addPlant({ name, type, info });
+    //   goHome();
+    //   setName("");
+    //   setType("");
+    //   setInfo("");
+    //   setErrors({});
+    //   setHasSubmitted(false);
+    // }
+
+    addPlant({ name, type, info });
   };
 
   return (

@@ -7,8 +7,8 @@ type plantProps = {
 };
 
 const Plant = ({ id }: plantProps) => {
-  const plantStore = usePlantStore();
-  const plant = plantStore.plants.get(id);
+  const { plants } = usePlantStore();
+  const plant = plants.find((el) => el.id === id);
 
   return (
     <View style={styles.plantContainer}>

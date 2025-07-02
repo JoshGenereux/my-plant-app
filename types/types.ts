@@ -9,10 +9,9 @@ export type Plant = {
 };
 
 export type PlantStore = {
-  plants: Map<number, Plant>;
-  nextId: number;
+  plants: Plant[];
   selected: number;
-  addPlant: (plant: Omit<Plant, "id">) => void;
+  addPlant: (plant: Plant) => void;
   removePlant: (id: number) => void;
   selectPlant: (id: number) => void;
 };

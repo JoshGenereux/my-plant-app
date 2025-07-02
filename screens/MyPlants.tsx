@@ -15,7 +15,7 @@ const MyPlants = () => {
 
   return (
     <View style={styles.plants}>
-      {Array.from(plants.values()).map((plant) => (
+      {plants.map((plant) => (
         <TouchableOpacity
           style={styles.plantContainer}
           key={plant.id}
