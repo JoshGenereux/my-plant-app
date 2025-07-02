@@ -24,6 +24,7 @@ const MyPlants = () => {
           }}
         >
           <View style={styles.nameBox}>
+            <Text style={styles.id}>{plant.id}</Text>
             <Text style={styles.name}>{plant.name}</Text>
           </View>
           <View style={styles.typeBox}>
@@ -63,11 +64,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderBottomWidth: 1,
     borderBottomColor: "#6E6362",
+    flexDirection: "row",
+    paddingLeft: 10,
   },
 
   name: {
     fontWeight: "bold",
     fontSize: 25,
+    flex: 1,
+    textAlign: "center",
+  },
+
+  id: {
+    width: 15,
   },
 
   typeBox: {
