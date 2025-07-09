@@ -1,11 +1,9 @@
-import useNavStore from "@/hooks/useNavStore";
 import usePlantStore from "@/hooks/usePlantStore";
 import React, { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 
 const NewPlant = () => {
   const { addPlant } = usePlantStore();
-  const { goHome } = useNavStore();
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [info, setInfo] = useState("");

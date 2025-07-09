@@ -1,51 +1,30 @@
-import useNavStore from "@/hooks/useNavStore";
 import usePlantStore from "@/hooks/usePlantStore";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const Footer = () => {
-  const navStore = useNavStore();
+const Footer = ({ navigation }) => {
   const { removePlant, selected } = usePlantStore();
 
   const handleDelete = () => {
     removePlant(selected);
-    // navStore.goHome();
+    navigation.navigate("home");
   };
 
   return (
     <View style={styles.footerContainer}>
-      {navStore.screenName === "home" && (
-        <TouchableOpacity
-          style={styles.addButton}
-          onPress={() => navStore.changeScreen("add")}
-        >
-          <Text style={styles.addButtonPlus}>+</Text>
-        </TouchableOpacity>
-      )}
-      {navStore.screenName === "add" && (
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navStore.goHome()}
-        >
-          <Text style={styles.backButtonSign}>{"<"}</Text>
-        </TouchableOpacity>
-      )}
-      {navStore.screenName === "plant" && (
-        <>
-          <TouchableOpacity
-            style={styles.backButton}
-            onPress={() => navStore.goHome()}
-          >
-            <Text style={styles.backButtonSign}>{"<"}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.deleteButton}
-            onPress={() => handleDelete()}
-          >
-            <Text style={styles.deleteText}>{"DELETE"}</Text>
-          </TouchableOpacity>
-        </>
-      )}
+      <TouchableOpacity
+        style={styles.addButton}
+        onPress={() => navigation.navigate("addPlant")}
+      >
+        <Text style={styles.addButtonText}>Add Plant</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.deleteButton}
+        onPress={() => handleDelete()}
+      >
+        <Text style={styles.deleteText}>{"DELETE"}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -76,7 +55,7 @@ const styles = StyleSheet.create({
   },
 
   addButton: {
-    width: 60,
+    width: 110,
     height: 60,
     backgroundColor: "#9EBC9E",
     justifyContent: "center",
@@ -85,10 +64,10 @@ const styles = StyleSheet.create({
     marginLeft: "auto",
   },
 
-  addButtonPlus: {
+  addButtonText: {
     color: "white",
-    fontSize: 50,
-    lineHeight: 50,
+    fontSize: 20,
+    textAlign: "center",
   },
 
   deleteButton: {

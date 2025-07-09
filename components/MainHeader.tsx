@@ -1,22 +1,17 @@
-import useNavStore from "@/hooks/useNavStore";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 const MainHeader = () => {
-  const navStore = useNavStore();
-
   return (
     <View style={styles.headerContainer}>
-      <TouchableOpacity onPress={() => navStore.goHome()}>
-        <Text style={styles.mainText}>My Plant App</Text>
-      </TouchableOpacity>
+      <Text style={styles.mainText}>My App</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   headerContainer: {
-    height: "5%",
+    height: 60,
     width: "100%",
     justifyContent: "center",
   },

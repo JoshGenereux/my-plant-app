@@ -1,16 +1,13 @@
-import useNavStore from "@/hooks/useNavStore";
 import usePlantStore from "@/hooks/usePlantStore";
 import { Plant } from "@/types/types";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const MyPlants = () => {
+const MyPlants = ({ navigation }) => {
   const { plants, selectPlant } = usePlantStore();
-  const navStore = useNavStore();
 
   const handlePress = (plant: Plant) => {
     selectPlant(plant.id);
-    navStore.changeScreen("plant");
   };
 
   return (
@@ -21,6 +18,7 @@ const MyPlants = () => {
           key={plant.id}
           onPress={() => {
             handlePress(plant);
+            navigation.navigate("plant", { id: plant.id });
           }}
         >
           <View style={styles.nameBox}>
